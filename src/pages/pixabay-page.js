@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {Link} from 'gatsby'
 
 const PixabayPage = ({data}) => {
 
@@ -9,6 +9,7 @@ const PixabayPage = ({data}) => {
         <div>
 
             <h1>Hi!</h1>
+            <Link to="/">Go back to the homepage</Link>
              {photos.map((photo,i) =>
                 
                 <img key={i} src={photo.node.largeImageURL}/>
@@ -17,7 +18,7 @@ const PixabayPage = ({data}) => {
                 
                 )}
 
-
+            
         </div>
 
     )
