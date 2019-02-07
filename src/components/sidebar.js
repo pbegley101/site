@@ -8,6 +8,7 @@ import {
   FaGithub,
   FaHashtag
 } from 'react-icons/fa'
+import siteConfig from '../../data/siteConfig'
 
 const Sidebar = styled.div`
   /* Device = Tablets, iPads (portrait) */

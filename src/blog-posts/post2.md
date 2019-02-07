@@ -24,9 +24,9 @@ A system landscape
 
 There is one Business Service called Stock, more to follow.
 
-Infrastructure and components are provided by Netflix Eureka(Service Discovery Server), Netflix Ribbon(Dynamic Routing and Load Balancer), Netflix Zuul(Edge Server)
+Infrastructure and components are provided by Netflix Eureka(Service Discovery Server), Netflix Ribbon(Dynamic Routing and Load Balancer), Netflix Zuul(Edge Server).
 
-Each component is build and in order to make it easier we have a shell script to orchestrate the Gradle build process.  
+Each component is built individually and in order to make it easier we have a shell script to orchestrate the Gradle build process.  
 
 In the root of the project run:
 
@@ -36,7 +36,7 @@ In the root of the project run:
 
 Source Code Walkthrough
 
-Each microservice is a standalone Spring Boot application and uses undertowas its web server.  Spring MVC is used for the REST based services and Spring RestTemplate is used to perform out-going calls.
+Each microservice is a standalone Spring Boot application and uses undertow as its web server.  Spring MVC is used for the REST based services and Spring RestTemplate is used to perform out-going calls.
 
 Gradle dependencies
 
@@ -101,12 +101,11 @@ To auto register microservices with Eureka, add a @EnableDiscoveryClient - annot
 
 ```java
 @SpringBootApplication
-@Controller
-@EnableZuulProxy
-public class ZuulApplication {
-	
+@EnableDiscoveryClient
+public class StockServiceApplication {
+
     public static void main(String[] args) {
-        new SpringApplicationBuilder(ZuulApplication.class).web(true).run(args);
+        SpringApplication.run(StockServiceApplication.class, args);
     }
 }
 ```
@@ -114,7 +113,7 @@ public class ZuulApplication {
 
 Start up the system landscape
 
-One needs curl and jq.  To start amicroservice execute ./gradlew bootRun.
+One needs curl and jq.  To start a microservice execute ./gradlew bootRun.
 
 Starting the infrastructure microservices is easy:
 
